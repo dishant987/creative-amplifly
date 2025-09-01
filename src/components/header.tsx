@@ -1,22 +1,45 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { useState, useEffect } from "react"
 import { Menu, X, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
+import { Link, useLocation } from "react-router-dom"
+import gsap from "gsap"
 
-const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Services', href: '/services' },
-  { name: 'Portfolio', href: '/portfolio' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Testimonials', href: '/testimonials' },
-  { name: 'Reviews', href: '/reviews' },
-  { name: 'Write for Us', href: '/write-for-us' },
-  { name: 'Contact', href: '/contact' }
+const navItems = [
+  { name: "Home", href: "/" },
+  { name: "Services", href: "/services" },
+  { name: "Portfolio", href: "/portfolio" },
+  { name: "Blog", href: "/blog" },
+  { name: "Contact", href: "/#contact" }
 ]
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const location = useLocation()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    if (isOpen) {
+      gsap.fromTo(".mobile-nav-item", 
+        { x: -50, opacity: 0 }, 
+        { x: 0, opacity: 1, duration: 0.3, stagger: 0.1, ease: "power2.out" }
+      )
+    }
+  }, [isOpen])
+
+  const isActive = (href: string) => {
+    if (href === "/") return location.pathname === "/"
+    return location.pathname.startsWith(href)
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-card-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -34,7 +57,7 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
+            {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
@@ -62,10 +85,10 @@ export function Header() {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={() => setIsOpen(!isOpen)}
               className="hover:bg-muted"
             >
-              {isMenuOpen ? (
+              {isOpen ? (
                 <X className="h-5 w-5" />
               ) : (
                 <Menu className="h-5 w-5" />
@@ -75,15 +98,15 @@ export function Header() {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
+        {isOpen && (
           <div className="md:hidden border-t border-card-border bg-card">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
+              {navItems.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
                   className="block px-3 py-2 text-foreground-muted hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={() => setIsOpen(false)}
                 >
                   {item.name}
                 </Link>
