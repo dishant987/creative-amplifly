@@ -10,7 +10,8 @@ const navItems = [
   { name: "Services", href: "/services" },
   { name: "Portfolio", href: "/portfolio" },
   { name: "Blog", href: "/blog" },
-  { name: "Contact", href: "/#contact" }
+  { name: "Teams", href: "/teams" },
+  { name: "Contact", href: "/contact" }
 ]
 
 export function Header() {

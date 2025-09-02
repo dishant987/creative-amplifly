@@ -233,8 +233,10 @@ export default function Services() {
                       <p className="text-sm text-foreground-muted">Starting from</p>
                       <p className="text-lg font-bold text-gradient-primary">{service.pricing}</p>
                     </div>
-                    <Button variant="outline" className="border-primary/20 hover:bg-primary/5">
-                      Learn More
+                    <Button variant="outline" className="border-primary/20 hover:bg-primary/5" asChild>
+                      <a href={`/services/${service.title.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')}`}>
+                        Learn More
+                      </a>
                     </Button>
                   </div>
                 </CardContent>
