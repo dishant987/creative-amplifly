@@ -1,7 +1,17 @@
-import { Zap, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, Youtube } from "lucide-react"
-import { Link } from "react-router-dom"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import {
+  Zap,
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram,
+  Youtube,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const footerLinks = {
   services: [
@@ -10,7 +20,7 @@ const footerLinks = {
     { name: "Social Media Marketing", href: "/services/social-media" },
     { name: "Content Marketing", href: "/services/content" },
     { name: "Web Development", href: "/services/web-development" },
-    { name: "Web Design", href: "/services/web-design" }
+    { name: "Web Design", href: "/services/web-design" },
   ],
   company: [
     { name: "About Us", href: "/about" },
@@ -18,7 +28,7 @@ const footerLinks = {
     { name: "Careers", href: "/careers" },
     { name: "Case Studies", href: "/case-studies" },
     { name: "Blog", href: "/blog" },
-    { name: "Reviews", href: "/reviews" }
+    { name: "Reviews", href: "/reviews" },
   ],
   resources: [
     { name: "Digital Marketing Guide", href: "/resources/marketing-guide" },
@@ -26,23 +36,23 @@ const footerLinks = {
     { name: "Web Design Trends", href: "/resources/design-trends" },
     { name: "ROI Calculator", href: "/calculator" },
     { name: "Write for Us", href: "/write-for-us" },
-    { name: "Free Consultation", href: "/consultation" }
+    { name: "Free Consultation", href: "/consultation" },
   ],
   legal: [
     { name: "Privacy Policy", href: "/privacy" },
     { name: "Terms of Service", href: "/terms" },
     { name: "Cookie Policy", href: "/cookies" },
-    { name: "GDPR Compliance", href: "/gdpr" }
-  ]
-}
+    { name: "GDPR Compliance", href: "/gdpr" },
+  ],
+};
 
 const socialLinks = [
   { name: "Facebook", icon: Facebook, href: "#" },
   { name: "Twitter", icon: Twitter, href: "#" },
   { name: "LinkedIn", icon: Linkedin, href: "#" },
   { name: "Instagram", icon: Instagram, href: "#" },
-  { name: "YouTube", icon: Youtube, href: "#" }
-]
+  { name: "YouTube", icon: Youtube, href: "#" },
+];
 
 export function Footer() {
   return (
@@ -60,11 +70,12 @@ export function Footer() {
                     <Zap className="h-6 w-6 text-primary-foreground" />
                   </div>
                   <span className="font-bold text-xl text-gradient-primary">
-                    AmpliFlow
+                    Once Seen
                   </span>
                 </Link>
                 <p className="text-foreground-muted max-w-md">
-                  Amplifying your digital success through innovative marketing strategies and cutting-edge web development solutions.
+                  Amplifying your digital success through innovative marketing
+                  strategies and cutting-edge web development solutions.
                 </p>
               </div>
 
@@ -86,16 +97,18 @@ export function Footer() {
 
               {/* Newsletter Signup */}
               <div>
-                <h4 className="font-semibold text-foreground mb-3">Stay Updated</h4>
+                <h4 className="font-semibold text-foreground mb-3">
+                  Stay Updated
+                </h4>
                 <p className="text-sm text-foreground-muted mb-4">
                   Get the latest digital marketing insights and updates.
                 </p>
                 <div className="flex space-x-2">
-                  <Input
-                    placeholder="Your email address"
-                    className="flex-1"
-                  />
-                  <Button size="sm" className="bg-gradient-primary hover:opacity-90">
+                  <Input placeholder="Your email address" className="flex-1" />
+                  <Button
+                    size="sm"
+                    className="bg-gradient-primary hover:opacity-90"
+                  >
                     Subscribe
                   </Button>
                 </div>
@@ -177,7 +190,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Copyright */}
             <div className="text-sm text-foreground-muted">
-              © 2024 AmpliFlow. All rights reserved.
+              © {new Date().getFullYear()} Once Seen. All rights reserved.
             </div>
 
             {/* Social Links */}
@@ -202,5 +215,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

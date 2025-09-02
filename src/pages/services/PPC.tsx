@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react"
-import { MousePointer, CheckCircle, TrendingUp, Target, BarChart3, Users, ArrowRight } from "lucide-react"
+import { MousePointer, CheckCircle, TrendingUp, Target, BarChart3, Users, ArrowRight, Home, ChevronRight } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -7,6 +7,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { Link } from "react-router-dom"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -132,7 +133,28 @@ export default function PPC() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+         <div className="container mx-auto px-4 lg:px-8 pt-14 pb-6">
+        <nav className="flex items-center space-x-1 text-sm">
+          <Link
+            to="/"
+            className="flex items-center text-muted-foreground hover:text-foreground transition-colors duration-200 hover:scale-105"
+          >
+            <Home className="h-4 w-4 mr-1.5" />
+            Home
+          </Link>
+          <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/60" />
+          <Link
+            to="/services"
+            className="text-muted-foreground hover:text-foreground transition-colors duration-200 hover:scale-105"
+          >
+            Services
+          </Link>
+          <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/60" />
+          <span className=" font-medium bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+            PPC Advertising Services
+          </span>
+        </nav>
+      </div>
       {/* Hero Section */}
       <section className="pt-24 pb-20 bg-gradient-to-br from-background via-background to-muted/30">
         <div className="container mx-auto px-4 lg:px-8">

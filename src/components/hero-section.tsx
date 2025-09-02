@@ -92,7 +92,7 @@ export function HeroSection() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="font-semibold px-6 lg:px-8 py-6 text-base lg:text-lg border-primary/20 hover:bg-primary/5"
+                className="font-semibold px-6 lg:px-8 py-6 text-base lg:text-lg border-primary/20 hover:bg-primary/5 hover:text-muted-foreground"
               >
                 <PlayCircle className="mr-2 h-5 w-5" />
                 Watch Demo
