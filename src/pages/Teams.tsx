@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react"
-import { Linkedin, Twitter, Github, Mail, Award, Users, Target, TrendingUp } from "lucide-react"
+import { Linkedin, Twitter, Github, Mail, Award, Users, Target, TrendingUp, Instagram } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -12,29 +12,29 @@ gsap.registerPlugin(ScrollTrigger)
 
 const teamMembers = [
   {
-    name: "Alex Thompson",
-    role: "Founder & CEO",
+    name: "Sanju Rajora",
+    role: "Co-Founder & SEO Expert",
     image: "/placeholder.svg",
-    bio: "10+ years of experience in digital marketing and business strategy. Led campaigns for Fortune 500 companies.",
-    specialties: ["Digital Strategy", "Business Growth", "Team Leadership"],
-    achievements: ["Built 3 successful agencies", "500+ successful campaigns", "Industry Speaker"],
+    bio: "1+ years of experience in digital marketing and business strategy. 3+ years exprience in Website development.",
+    specialties: ["Digital Strategy", "Business Growth", "Website Development"],
+    achievements: ["Built 2 successful agencies", "20+ Websites", "Seo Centric Websites"],
     social: {
-      linkedin: "https://linkedin.com/in/alexthompson",
-      twitter: "https://twitter.com/alexthompson",
-      email: "alex@ampliflow.com"
+      linkedin: "https://linkedin.com/in/sanju-rajora",
+      instagram: "https://www.instagram.com/_sanju_25o4_/",
+      email: "sanjurajora3@gmail.com"
     }
   },
   {
-    name: "Sarah Chen",
-    role: "Head of SEO",
+    name: "Manan Patel",
+    role: "Co-Founder & SEO-Expert ",
     image: "/placeholder.svg",
-    bio: "SEO expert with a proven track record of improving organic rankings for 200+ websites across various industries.",
+    bio: "SEO expert with a proven track record of improving organic rankings for 2+ websites across various industries.",
     specialties: ["Technical SEO", "Content Strategy", "Local SEO"],
     achievements: ["Google Analytics Certified", "300% avg traffic increase", "SEO Conference Speaker"],
     social: {
-      linkedin: "https://linkedin.com/in/sarahchen",
-      twitter: "https://twitter.com/sarahchen",
-      email: "sarah@ampliflow.com"
+      linkedin: "https://www.linkedin.com/in/manan-patel-735381265/",
+      instagram: "https://www.instagram.com/manan_patel_310/",
+      email: "manantpatel1234@gmail.com"
     }
   },
   {
@@ -46,74 +46,23 @@ const teamMembers = [
     achievements: ["Google Ads Certified", "$2M+ ad spend managed", "4:1 average ROAS"],
     social: {
       linkedin: "https://linkedin.com/in/michaelrodriguez",
-      github: "https://github.com/michaelrodriguez",
+      instagram: "https://github.com/michaelrodriguez",
       email: "michael@ampliflow.com"
     }
   },
   {
-    name: "Emily Watson",
-    role: "Creative Director",
+    name: "Michael Rodriguez",
+    role: "PPC Specialist",
     image: "/placeholder.svg",
-    bio: "Award-winning designer with 8+ years creating compelling brand identities and marketing materials.",
-    specialties: ["Brand Design", "UI/UX Design", "Creative Strategy"],
-    achievements: ["Design Awards Winner", "100+ brand identities", "Creative Industry Recognition"],
+    bio: "Google Ads expert managing $2M+ in ad spend annually with consistently achieving 4:1+ ROAS for clients.",
+    specialties: ["Google Ads", "Facebook Ads", "Campaign Optimization"],
+    achievements: ["Google Ads Certified", "$2M+ ad spend managed", "4:1 average ROAS"],
     social: {
-      linkedin: "https://linkedin.com/in/emilywatson",
-      twitter: "https://twitter.com/emilywatson",
-      email: "emily@ampliflow.com"
-    }
-  },
-  {
-    name: "David Kim",
-    role: "Full-Stack Developer",
-    image: "/placeholder.svg",
-    bio: "Senior developer specializing in modern web technologies and scalable applications for high-traffic websites.",
-    specialties: ["React/Next.js", "Node.js", "Cloud Architecture"],
-    achievements: ["AWS Certified", "50+ web applications", "Performance Optimization Expert"],
-    social: {
-      linkedin: "https://linkedin.com/in/davidkim",
-      github: "https://github.com/davidkim",
-      email: "david@ampliflow.com"
-    }
-  },
-  {
-    name: "Jessica Torres",
-    role: "Content Strategist",
-    image: "/placeholder.svg",
-    bio: "Content marketing specialist with expertise in creating engaging content that drives conversions and builds brand authority.",
-    specialties: ["Content Marketing", "Social Media", "Brand Storytelling"],
-    achievements: ["Content Marketing Certified", "500+ articles published", "Viral Campaign Creator"],
-    social: {
-      linkedin: "https://linkedin.com/in/jessicatorres",
-      twitter: "https://twitter.com/jessicatorres",
-      email: "jessica@ampliflow.com"
-    }
-  },
-  {
-    name: "Ryan Park",
-    role: "Analytics Manager",
-    image: "/placeholder.svg",
-    bio: "Data-driven marketer who transforms complex analytics into actionable insights for business growth.",
-    specialties: ["Data Analytics", "Performance Tracking", "Conversion Optimization"],
-    achievements: ["Google Analytics Expert", "Data Science Certified", "ROI Optimization Specialist"],
-    social: {
-      linkedin: "https://linkedin.com/in/ryanpark",
-      github: "https://github.com/ryanpark",
-      email: "ryan@ampliflow.com"
-    }
-  },
-  {
-    name: "Lisa Anderson",
-    role: "Client Success Manager",
-    image: "/placeholder.svg",
-    bio: "Dedicated to ensuring client satisfaction and success with 95% client retention rate and exceptional service delivery.",
-    specialties: ["Client Relations", "Project Management", "Success Strategy"],
-    achievements: ["95% client retention", "Project Management Certified", "Customer Success Awards"],
-    social: {
-      linkedin: "https://linkedin.com/in/lisaanderson",
-      email: "lisa@ampliflow.com"
-    }
-  }
+      linkedin: "https://linkedin.com/in/michaelrodriguez",
+      instagram: "https://github.com/michaelrodriguez",
+      email: "michael@ampliflow.com"
+    }},
+
 ]
 
 const companyValues = [
@@ -140,8 +89,8 @@ const companyValues = [
 ]
 
 const stats = [
-  { number: "50+", label: "Team Members", description: "Experts across all digital disciplines" },
-  { number: "500+", label: "Projects Delivered", description: "Successful campaigns and websites" },
+  { number: "4+", label: "Team Members", description: "Experts across all digital disciplines" },
+  { number: "30+", label: "Projects Delivered", description: "Successful campaigns and websites" },
   { number: "98%", label: "Client Satisfaction", description: "Based on client feedback and retention" },
   { number: "300%", label: "Average ROI", description: "Return on investment for our clients" }
 ]
@@ -326,12 +275,12 @@ export default function Teams() {
                         <Linkedin className="h-4 w-4" />
                       </Button>
                     )}
-                    {member.social.twitter && (
+                    {member.social.instagram && (
                       <Button size="icon" variant="ghost" className="h-8 w-8 hover:text-primary">
-                        <Twitter className="h-4 w-4" />
+                        <Instagram className="h-4 w-4" />
                       </Button>
                     )}
-                    {member.social.github && (
+                    {member.social.instagram && (
                       <Button size="icon" variant="ghost" className="h-8 w-8 hover:text-primary">
                         <Github className="h-4 w-4" />
                       </Button>
