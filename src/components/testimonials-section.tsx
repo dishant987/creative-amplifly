@@ -4,47 +4,21 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
-    role: "CEO, TechStart Inc.",
+    name: "Skillspeer",
+    role: "Freelancing & Collaboration Platform",
     avatar: "/api/placeholder/60/60",
     rating: 5,
-    content: "AmpliFlow transformed our digital presence completely. Our organic traffic increased by 300% in just 6 months, and our conversion rates doubled. Their team's expertise in both marketing and development is unmatched."
+    content:
+      "We partnered with OnceSeen for a complete technical audit, on-page SEO, and Google Search Console setup. The results have been excellent, with steady improvements in visibility and performance. Their professional approach and detailed reporting give us full confidence in the process.",
   },
   {
-    name: "Michael Chen",
-    role: "Marketing Director, GrowthCorp",
+    name: "EPIX IT Services",
+    role: "IT Solutions & Consulting",
     avatar: "/api/placeholder/60/60",
     rating: 5,
-    content: "Working with AmpliFlow has been a game-changer. Their data-driven approach to PPC advertising helped us reduce our cost per acquisition by 45% while scaling our campaigns. Highly recommended!"
+    content:
+      "OnceSeen helped us optimize our digital presence through GMB setup, on-page optimization, and SEO improvements. The impact on local visibility and search performance has been very positive. Their structured execution and ongoing support make them a reliable growth partner.",
   },
-  {
-    name: "Emily Rodriguez",
-    role: "Founder, EcomPlus",
-    avatar: "/api/placeholder/60/60",
-    rating: 5,
-    content: "The website they built for us is not just beautiful, but it's also a conversion machine. Our online sales increased by 250% after the launch. The SEO integration was seamless and effective."
-  },
-  {
-    name: "David Kumar",
-    role: "VP Marketing, InnovateLab",
-    avatar: "/api/placeholder/60/60",
-    rating: 5,
-    content: "AmpliFlow's content marketing strategy helped establish us as thought leaders in our industry. Our blog now generates 40% of our qualified leads. Their strategic approach is impressive."
-  },
-  {
-    name: "Lisa Thompson",
-    role: "CMO, DigitalWave",
-    avatar: "/api/placeholder/60/60",
-    rating: 5,
-    content: "From social media management to email marketing automation, they handle everything seamlessly. Our engagement rates are up 180% and we've seen a significant improvement in brand awareness."
-  },
-  {
-    name: "James Wilson",
-    role: "Business Owner, LocalBiz",
-    avatar: "/api/placeholder/60/60",
-    rating: 5,
-    content: "As a small business owner, I needed a partner who could handle both my website development and marketing needs. AmpliFlow delivered beyond expectations and helped us compete with larger companies."
-  }
 ]
 
 export function TestimonialsSection() {
@@ -62,13 +36,17 @@ export function TestimonialsSection() {
             <span className="text-gradient-primary">Say About Us</span>
           </h2>
           <p className="text-xl text-foreground-muted max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what our clients have to say about working with AmpliFlow.
+            A glimpse of the work we’ve done for our clients and the impact of our strategies.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {testimonials.map((testimonial, index) => (
-            <Card key={testimonial.name} className="glass hover-lift group h-full" style={{ animationDelay: `${index * 100}ms` }}>
+            <Card
+              key={testimonial.name}
+              className="glass hover-lift group h-full"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
               <CardContent className="p-6 h-full flex flex-col">
                 {/* Quote Icon */}
                 <div className="mb-4">
@@ -92,7 +70,7 @@ export function TestimonialsSection() {
                   <Avatar className="h-12 w-12">
                     <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
                     <AvatarFallback className="bg-gradient-primary text-primary-foreground">
-                      {testimonial.name.split(' ').map(n => n[0]).join('')}
+                      {testimonial.name.split(" ").map((n) => n[0]).join("")}
                     </AvatarFallback>
                   </Avatar>
                   <div>
@@ -107,9 +85,9 @@ export function TestimonialsSection() {
 
         {/* Trust Indicators */}
         <div className="text-center mt-16">
-          <p className="text-foreground-muted mb-8">Trusted by leading companies worldwide</p>
+          <p className="text-foreground-muted mb-8">Trusted by businesses that value results</p>
           <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
+            {[1, 2, 3, 4].map((i) => (
               <div key={i} className="h-8 bg-foreground-muted rounded w-24"></div>
             ))}
           </div>

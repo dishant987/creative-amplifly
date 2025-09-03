@@ -76,7 +76,7 @@ export function ContactSection() {
             <span className="text-sm font-medium">Get In Touch</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-foreground">Ready to Amplify</span>
+            <span className="text-foreground">Ready to Ampl</span>
             <br />
             <span className="text-gradient-primary">Your Digital Success?</span>
           </h2>

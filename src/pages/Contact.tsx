@@ -12,34 +12,34 @@ import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
+import ContactModal from "@/components/ContactModal"
 
 gsap.registerPlugin(ScrollTrigger)
 
+
+
 const contactInfo = [
-  {
-    icon: MapPin,
-    title: "Visit Our Office",
-    details: ["123 Business Avenue", "Suite 100, New York, NY 10001"],
-    action: "Get Directions"
-  },
   {
     icon: Phone,
     title: "Call Us",
-    details: ["+1 (555) 123-4567", "+1 (555) 987-6543"],
-    action: "Call Now"
+    details: ["+91 7016626845", "+91 9107310310"],
+    action: "Call Now",
+    link: "tel:+917016626845",
   },
   {
     icon: Mail,
     title: "Email Us",
-    details: ["hello@ampliflow.com", "support@ampliflow.com"],
-    action: "Send Email"
+    details: ["onceseen01@gmail.com", "contact.onceseen@gmail.com"],
+    action: "Send Email",
+    link: "mailto:onceseen01@gmail.com",
   },
   {
     icon: Clock,
     title: "Business Hours",
-    details: ["Mon - Fri: 9:00 AM - 6:00 PM", "Sat: 10:00 AM - 4:00 PM"],
-    action: "Schedule Meeting"
-  }
+    details: ["Mon - Fri: 9:00 AM - 8:00 PM", "Sat: 10:00 AM - 4:00 PM"],
+    action: "Schedule Meeting",
+   
+  },
 ]
 
 const services = [
@@ -55,11 +55,11 @@ const services = [
 ]
 
 const budgetRanges = [
-  "Under $5,000",
-  "$5,000 - $15,000",
-  "$15,000 - $50,000", 
-  "$50,000 - $100,000",
-  "Over $100,000"
+  "Under ₹14,000",
+  "₹14,000 – ₹30,000",
+  "₹30,000 – ₹50,000",
+  "₹50,000 – ₹70,000",
+  "Over ₹70,000"
 ]
 
 export default function Contact() {
@@ -172,7 +172,7 @@ export default function Contact() {
     
     setIsSubmitting(false)
   }
-
+const [openModal, setOpenModal] = useState(false)
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -197,30 +197,70 @@ export default function Contact() {
       </section>
 
       {/* Contact Information Cards */}
-      <section className="py-12">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {contactInfo.map((info, index) => (
-              <Card key={info.title} className="glass hover-lift text-center h-full">
+    <section className="py-12">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
+          {contactInfo.map((info) => {
+            const isBusinessHours = info.title === "Business Hours"
+
+            return (
+              <Card
+                key={info.title}
+                onClick={isBusinessHours ? () => setOpenModal(true) : undefined}
+                className="glass hover:shadow-xl hover:scale-105 transition-transform duration-300 text-center w-full max-w-sm cursor-pointer"
+              >
                 <CardHeader className="pb-4">
-                  <div className="w-16 h-16 bg-gradient-primary rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <info.icon className="h-8 w-8 text-primary-foreground" />
+                  <div className="w-16 h-16 bg-gradient-to-tr from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-md">
+                    <info.icon className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-lg">{info.title}</CardTitle>
+                  <CardTitle className="text-lg font-semibold">
+                    {info.title}
+                  </CardTitle>
                 </CardHeader>
+
                 <CardContent className="space-y-2">
                   {info.details.map((detail, idx) => (
-                    <p key={idx} className="text-sm text-foreground-muted">{detail}</p>
+                    <p
+                      key={idx}
+                      className="text-sm text-foreground-muted leading-relaxed"
+                    >
+                      {detail}
+                    </p>
                   ))}
-                  <Button variant="outline" size="sm" className="mt-4 border-primary/20 hover:bg-primary/5">
-                    {info.action}
-                  </Button>
+
+                  {isBusinessHours ? (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="mt-4 border-primary/30 hover:bg-primary/10 transition"
+                      onClick={(e) => {
+                        e.stopPropagation() // prevent double trigger
+                        setOpenModal(true)
+                      }}
+                    >
+                      {info.action}
+                    </Button>
+                  ) : (
+                    <a href={info.link} target="_self" rel="noopener noreferrer">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="mt-4 border-primary/30 hover:bg-primary/10 transition"
+                      >
+                        {info.action}
+                      </Button>
+                    </a>
+                  )}
                 </CardContent>
               </Card>
-            ))}
-          </div>
+            )
+          })}
         </div>
-      </section>
+      </div>
+
+      {/* Modal */}
+      <ContactModal open={openModal} onClose={() => setOpenModal(false)} />
+    </section>
 
       {/* Main Content */}
       <section className="py-12" ref={formRef}>
@@ -387,83 +427,62 @@ export default function Contact() {
             {/* Map and Additional Info */}
             <div className="space-y-8">
               {/* Map */}
-              <Card className="form-section glass overflow-hidden">
-                <CardHeader>
-                  <CardTitle className="text-xl">Our Location</CardTitle>
-                  <CardDescription>
-                    Visit us at our office or schedule a virtual meeting
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-0">
-                  {!mapboxToken ? (
-                    <div className="p-6">
-                      <Input
-                        placeholder="Enter your Mapbox public token"
-                        value={mapboxToken}
-                        onChange={(e) => setMapboxToken(e.target.value)}
-                        className="mb-4"
-                      />
-                      <p className="text-sm text-foreground-muted">
-                        Get your free token at{" "}
-                        <a 
-                          href="https://mapbox.com" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-primary hover:underline"
-                        >
-                          mapbox.com
-                        </a>
-                      </p>
-                    </div>
-                  ) : (
-                    <div ref={mapContainer} className="w-full h-80" />
-                  )}
-                </CardContent>
-              </Card>
+           
 
               {/* Why Choose Us */}
-              <Card className="form-section glass">
-                <CardHeader>
-                  <CardTitle className="text-xl">Why Choose AmpliFlow?</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {[
-                    "Proven track record with 500+ successful projects",
-                    "Average 300% ROI increase for our clients", 
-                    "24/7 support and dedicated account manager",
-                    "Free consultation and custom strategy development",
-                    "Transparent reporting and regular performance updates"
-                  ].map((benefit, index) => (
-                    <div key={index} className="flex items-start">
-                      <CheckCircle className="h-5 w-5 text-success mr-3 mt-0.5 flex-shrink-0" />
-                      <p className="text-sm text-foreground-muted">{benefit}</p>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
+             <Card className="form-section glass">
+  <CardHeader>
+    <CardTitle className="text-xl">Why Choose OnceSeen?</CardTitle>
+  </CardHeader>
+  <CardContent className="space-y-4">
+    {[
+      "Proven expertise with 3+ successful client projects",
+      "We deliver measurable growth, not just empty promises",
+      "Specialized in in-depth SEO technical audits",
+      "Affordable SEO services tailored for startups & B2B",
+      "Transparent delivery process with clear reporting",
+      "Focused on ROI-driven strategies at accessible pricing"
+    ].map((benefit, index) => (
+      <div key={index} className="flex items-start">
+        <CheckCircle className="h-5 w-5 text-success mr-3 mt-0.5 flex-shrink-0" />
+        <p className="text-sm text-foreground-muted">{benefit}</p>
+      </div>
+    ))}
+  </CardContent>
+</Card>
+
 
               {/* Testimonial */}
-              <Card className="form-section glass">
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 text-yellow-500 fill-current" />
-                    ))}
-                  </div>
-                  <blockquote className="text-foreground-muted italic mb-4">
-                    "AmpliFlow transformed our online presence completely. Our organic traffic increased by 400% and sales doubled within 6 months. Their team is incredibly professional and results-driven."
-                  </blockquote>
-                  <div className="flex items-center">
-                    <div className="w-10 h-10 bg-gradient-primary rounded-full flex items-center justify-center mr-3">
-                      <span className="text-sm font-bold text-primary-foreground">SM</span>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-sm">Sarah Mitchell</p>
-                      <p className="text-xs text-foreground-muted">CEO, TechStart Inc.</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+             <Card className="form-section glass">
+  <CardContent className="p-6">
+    {/* Star Rating */}
+    <div className="flex items-center mb-4">
+      {[...Array(5)].map((_, i) => (
+        <Star key={i} className="h-4 w-4 text-yellow-500 fill-current" />
+      ))}
+    </div>
+
+    {/* Review */}
+    <blockquote className="text-foreground-muted italic mb-4">
+      "Partnering with OnceSeen was one of the best decisions for our digital growth. 
+      Their SEO expertise helped us rank for competitive keywords, grow our organic 
+      traffic massively, and turn visibility into measurable revenue. They are a 
+      results-oriented team we can always count on."
+    </blockquote>
+
+    {/* Reviewer */}
+    <div className="flex items-center">
+      <div className="w-10 h-10 bg-gradient-primary rounded-full flex items-center justify-center mr-3">
+        <span className="text-sm font-bold text-primary-foreground">SP</span>
+      </div>
+      <div>
+        <p className="font-semibold text-sm">Skillspeer</p>
+        <p className="text-xs text-foreground-muted">CEO, Skillspeer</p>
+      </div>
+    </div>
+  </CardContent>
+</Card>
+
             </div>
           </div>
         </div>

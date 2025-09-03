@@ -1,6 +1,13 @@
+"use client"
+
+import { useState } from "react"
 import { Search, MousePointer, Share2, FileText, Mail, Code, Palette, BarChart3 } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
 
 const services = [
   {
@@ -54,6 +61,18 @@ const services = [
 ]
 
 export function ServicesSection() {
+  const [open, setOpen] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitted(true)
+    setTimeout(() => {
+      setOpen(false)
+      setSubmitted(false)
+    }, 2000) // Auto-close modal after thank you
+  }
+
   return (
     <section className="py-20">
       <div className="container mx-auto px-4 lg:px-8">
@@ -92,8 +111,13 @@ export function ServicesSection() {
                     </li>
                   ))}
                 </ul>
-                <Button variant="outline" size="sm" className="w-full border-primary/20 hover:bg-primary/5">
-                  Learn More
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="w-full border-primary/20 hover:bg-primary/5"
+                  onClick={() => setOpen(true)}
+                >
+                  Get a Quote
                 </Button>
               </CardContent>
             </Card>
@@ -106,6 +130,51 @@ export function ServicesSection() {
           </Button>
         </div>
       </div>
+
+      {/* Modal for Contact Form */}
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="sm:max-w-lg">
+          {!submitted ? (
+            <>
+              <DialogHeader>
+                <DialogTitle>Contact Us - Get a Quote</DialogTitle>
+              </DialogHeader>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <Label htmlFor="name">Name</Label>
+                  <Input id="name" required />
+                </div>
+                <div>
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" type="email" required />
+                </div>
+                <div>
+                  <Label htmlFor="message">Message</Label>
+                  <Textarea id="message" rows={3} required />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="date">Preferred Date</Label>
+                    <Input id="date" type="date" required />
+                  </div>
+                  <div>
+                    <Label htmlFor="time">Preferred Time</Label>
+                    <Input id="time" type="time" required />
+                  </div>
+                </div>
+                <DialogFooter>
+                  <Button type="submit" className="bg-gradient-primary text-white">Submit</Button>
+                </DialogFooter>
+              </form>
+            </>
+          ) : (
+            <div className="text-center py-10">
+              <h3 className="text-xl font-semibold mb-2">Thank You!</h3>
+              <p className="text-foreground-muted">Your request has been submitted. We’ll get back to you shortly.</p>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   )
 }
