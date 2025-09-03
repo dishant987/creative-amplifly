@@ -38,11 +38,11 @@ const teamMembers = [
     }
   },
   {
-    name: "Michael Rodriguez",
-    role: "PPC Specialist",
+    name: "Dishant Tank",
+    role: "Website Developer",
     image: "/placeholder.svg",
     bio: "Google Ads expert managing $2M+ in ad spend annually with consistently achieving 4:1+ ROAS for clients.",
-    specialties: ["Google Ads", "Facebook Ads", "Campaign Optimization"],
+    specialties: ["Website development","Software development"],
     achievements: ["Google Ads Certified", "$2M+ ad spend managed", "4:1 average ROAS"],
     social: {
       linkedin: "https://linkedin.com/in/michaelrodriguez",
@@ -50,18 +50,7 @@ const teamMembers = [
       email: "michael@ampliflow.com"
     }
   },
-  {
-    name: "Michael Rodriguez",
-    role: "PPC Specialist",
-    image: "/placeholder.svg",
-    bio: "Google Ads expert managing $2M+ in ad spend annually with consistently achieving 4:1+ ROAS for clients.",
-    specialties: ["Google Ads", "Facebook Ads", "Campaign Optimization"],
-    achievements: ["Google Ads Certified", "$2M+ ad spend managed", "4:1 average ROAS"],
-    social: {
-      linkedin: "https://linkedin.com/in/michaelrodriguez",
-      instagram: "https://github.com/michaelrodriguez",
-      email: "michael@ampliflow.com"
-    }},
+  
 
 ]
 
